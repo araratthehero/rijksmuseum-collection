@@ -23,4 +23,8 @@ dependencies {
 
     implementation libs.di.hilt
     kapt libs.di.compiler
+    implementation libs.network.retrofit
+    implementation libs.network.gson.converter
+    implementation libs.network.okhttp
+    implementation libs.network.gson
 }
