@@ -1,0 +1,62 @@
+[versions]
+# Compose
+composeVersion = "2023.06.01"
+composeCompilerVersion = "1.4.7"
+accompanistSystemuicontrollerVersion = "0.30.1"
+
+# Android X
+coreVersion = "1.10.1"
+navigationVersion = "2.6.0"
+pagingVersion = "3.2.0-rc01"
+pagingComposeVersion = "3.2.0-rc01"
+hiltNavigationComposeVersion = "1.0.0"
+lifecycleComposeVersion = "2.6.1"
+testRunnerVersion = "1.5.1"
+
+# Kotlin
+kotlinVersion = "1.8.21"
+
+# DI
+hiltVersion = "2.47"
+
+# Plugins
+androidVersion = "8.0.2"
+kotlinAndroidVersion = "1.8.20"
+kotlinKaptVersion = "1.9.0"
+
+[libraries]
+agp = { module = "com.android.tools.build:gradle", version = "7.4.1" }
+
+# Compose
+compose-bom = { module = "androidx.compose:compose-bom", version.ref = "composeVersion" }
+compose-foundation = { module = "androidx.compose.foundation:foundation" }
+compose-material = { module = "androidx.compose.material3:material3" }
+compose-ui = { module = "androidx.compose.ui:ui" }
+compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
+compose-accompanist-systemuicontroller = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanistSystemuicontrollerVersion" }
+
+# Android X
+x-core = { module = "androidx.core:core-ktx", version.ref = "coreVersion" }
+x-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationVersion" }
+x-paging = { module = "androidx.paging:paging-runtime", version.ref = "pagingVersion" }
+x-paging-common = { module = "androidx.paging:paging-common", version.ref = "pagingVersion" }
+x-paging-compose = { module = "androidx.paging:paging-compose", version.ref = "pagingComposeVersion" }
+x-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationComposeVersion" }
+x-lifecycle-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "lifecycleComposeVersion" }
+x-test-runner = { module = "androidx.test:runner", version.ref = "testRunnerVersion" }
+
+# Kotlin
+kt-classpath = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlinVersion" }
+
+# DI
+di-hilt = { module = "com.google.dagger:hilt-android", version.ref = "hiltVersion" }
+di-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hiltVersion" }
+di-classpath = { module = "com.google.dagger:hilt-android-gradle-plugin", version.ref = "hiltVersion" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "androidVersion" }
+android-library = { id = "com.android.library", version.ref = "androidVersion" }
+android-settings = { id = "com.android.settings", version.ref = "androidVersion" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlinAndroidVersion" }
+kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlinKaptVersion" }
+di-hilt = { id = "com.google.dagger.hilt.android", version.ref = "hiltVersion" }

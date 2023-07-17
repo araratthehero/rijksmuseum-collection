@@ -5,6 +5,11 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
+
+plugins {
+    id 'com.android.settings' version '8.0.2'
+}
+
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
@@ -14,3 +19,8 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Rijksmuseum collection"
 include ':app'
+
+android {
+    compileSdk 33
+    minSdk 26
+}
