@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'com.mnatsakanyan.rijksmuseumcollection'
+    namespace 'com.mnatsakanyan.rijksmuseum'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.mnatsakanyan.rijksmuseumcollection"
+        applicationId "com.mnatsakanyan.rijksmuseum"
         minSdk 24
         targetSdk 33
         versionCode 1
