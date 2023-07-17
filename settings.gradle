@@ -19,6 +19,8 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Rijksmuseum collection"
 include ':app'
+include ':domain'
+include ':data'
 
 android {
     compileSdk 33
