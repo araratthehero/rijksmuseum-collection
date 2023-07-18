@@ -20,4 +20,10 @@ dependencies {
 
     implementation libs.di.hilt
     kapt libs.di.compiler
+
+    testImplementation libs.test.junit
+    testImplementation libs.test.kotlin
+    testImplementation libs.test.coroutines
+    testImplementation libs.test.paging
+    testImplementation libs.test.paging.common
 }
