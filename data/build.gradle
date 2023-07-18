@@ -25,6 +25,8 @@ android {
 dependencies {
 
     implementation libs.x.paging.common
+    implementation libs.test.paging
+    implementation libs.test.paging.common
 
     implementation libs.di.hilt
     kapt libs.di.compiler
