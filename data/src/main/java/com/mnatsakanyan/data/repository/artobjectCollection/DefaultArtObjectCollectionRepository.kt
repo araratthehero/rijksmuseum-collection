@@ -1,13 +1,18 @@
 package com.mnatsakanyan.data.repository.artobjectCollection
 
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
+import androidx.paging.map
 import com.mnatsakanyan.data.model.NetworkArtObject
 import com.mnatsakanyan.data.model.RequestedArtObject
+import com.mnatsakanyan.data.model.asExternalModel
 import com.mnatsakanyan.data.network.NetworkDataSource
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
@@ -39,8 +44,13 @@ class DefaultArtObjectCollectionRepository @Inject constructor(
         }
     }
 
-    override fun fetchArtObjectCollectionList(): Flow<PagingData<RequestedArtObject>> {
-        TODO("Not yet implemented")
+    override fun fetchArtObjectCollectionList() = Pager(
+            config = PagingConfig(pageSize),
+            pagingSourceFactory = {
+                this
+            }
+    ).flow.map { pagingData ->
+        pagingData.map { networkArtObject -> networkArtObject.asExternalModel() }
     }
 
     companion object {
