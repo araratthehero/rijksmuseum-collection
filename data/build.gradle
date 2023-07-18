@@ -32,4 +32,10 @@ dependencies {
     implementation libs.network.gson.converter
     implementation libs.network.okhttp
     implementation libs.network.gson
+
+    testImplementation libs.test.junit
+    testImplementation libs.test.kotlin
+    testImplementation libs.test.coroutines
+    testImplementation libs.test.paging
+    testImplementation libs.test.paging.common
 }
