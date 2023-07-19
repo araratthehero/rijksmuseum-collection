@@ -2,22 +2,22 @@ package com.mnatsakanyan.domain.artobjectcollection.fake
 
 import androidx.paging.PagingData
 import androidx.paging.map
-import com.mnatsakanyan.data.repository.artobjectCollection.fake.TestArtObjectCollectionRepository
-import com.mnatsakanyan.domain.artobjectcollection.GetArtObjectCollectionListUseCase
-import com.mnatsakanyan.domain.artobjectcollection.GetArtObjectCollectionListUseCaseImpl
+import com.mnatsakanyan.data.repository.fake.TestArtObjectRepository
+import com.mnatsakanyan.domain.artobjectcollection.GetArtObjectCollectionUseCase
+import com.mnatsakanyan.domain.artobjectcollection.GetArtObjectCollectionUseCaseImpl
 import com.mnatsakanyan.domain.model.ArtObject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-class TestGetArtObjectCollectionListUseCase(
+class TestGetArtObjectCollectionUseCase(
         sizeOfList: Int = LIST_SIZE,
         private val breakBetweenAuthors: Int = BREAK_BETWEEN_AUTHORS
-) : GetArtObjectCollectionListUseCase {
+) : GetArtObjectCollectionUseCase {
     private val testArtObjectCollectionRepository =
-            TestArtObjectCollectionRepository(sizeOfList)
+            TestArtObjectRepository(sizeOfList)
 
     override operator fun invoke(): Flow<PagingData<ArtObject>> =
-            GetArtObjectCollectionListUseCaseImpl(testArtObjectCollectionRepository).invoke()
+            GetArtObjectCollectionUseCaseImpl(testArtObjectCollectionRepository).invoke()
                     .map { pagingData ->
                         var authorNumber = 0
                         var mappedAuthorCount = 0

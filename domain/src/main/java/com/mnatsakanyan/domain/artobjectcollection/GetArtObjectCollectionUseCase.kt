@@ -4,6 +4,6 @@ import androidx.paging.PagingData
 import com.mnatsakanyan.domain.model.ArtObject
 import kotlinx.coroutines.flow.Flow
 
-interface GetArtObjectCollectionListUseCase {
+interface GetArtObjectCollectionUseCase {
     operator fun invoke(): Flow<PagingData<ArtObject>>
 }

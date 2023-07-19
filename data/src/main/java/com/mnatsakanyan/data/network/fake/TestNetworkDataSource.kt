@@ -1,6 +1,7 @@
 package com.mnatsakanyan.data.network.fake
 
 import com.mnatsakanyan.data.model.NetworkArtObject
+import com.mnatsakanyan.data.model.NetworkDating
 import com.mnatsakanyan.data.model.NetworkImage
 import com.mnatsakanyan.data.network.NetworkDataSource
 
@@ -10,8 +11,8 @@ internal class TestNetworkDataSource(
 
     internal val listOfItems = (0..sizeOfList).map { id -> generateNetworkArtObject(id.toString()) }
 
-    override suspend fun getCollectionList(pageNumber: Int,
-                                           itemCountPerPage: Int): List<NetworkArtObject> {
+    override suspend fun getCollection(pageNumber: Int,
+                                       itemCountPerPage: Int): List<NetworkArtObject> {
         val fromIndex = (pageNumber - 1) * itemCountPerPage
         val toIndex = fromIndex + itemCountPerPage
         return listOfItems.subList(fromIndex, toIndex)
@@ -32,6 +33,12 @@ internal class TestNetworkDataSource(
                             width = null,
                             height = null,
                             url = "url"
+                    ),
+                    description = "description",
+                    dating = NetworkDating(
+                            presentingDate = "1900 - 1920",
+                            yearEarly = "1900",
+                            yearLate = "1920"
                     )
             )
 }

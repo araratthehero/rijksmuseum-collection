@@ -5,5 +5,7 @@ internal data class NetworkArtObject(
         val objectNumber: String,
         val title: String,
         val principalOrFirstMaker: String,
-        val webImage: NetworkImage?
+        val webImage: NetworkImage?,
+        val description: String?,
+        val dating: NetworkDating?
 )

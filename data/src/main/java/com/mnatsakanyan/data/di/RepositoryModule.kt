@@ -1,10 +1,8 @@
 package com.mnatsakanyan.data.di
 
 import com.mnatsakanyan.data.network.NetworkDataSource
-import com.mnatsakanyan.data.repository.artobject.ArtObjectRepository
-import com.mnatsakanyan.data.repository.artobject.DefaultArtObjectRepository
-import com.mnatsakanyan.data.repository.artobjectCollection.ArtObjectCollectionRepository
-import com.mnatsakanyan.data.repository.artobjectCollection.DefaultArtObjectCollectionRepository
+import com.mnatsakanyan.data.repository.ArtObjectRepository
+import com.mnatsakanyan.data.repository.DefaultArtObjectRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,20 +18,11 @@ internal object RepositoryModule {
 
     @Singleton
     @Provides
-    fun providesArtObjectCollectionRepository(
-            networkDataSource: NetworkDataSource
-    ): ArtObjectCollectionRepository = DefaultArtObjectCollectionRepository(
-            networkDataSource,
-            PAGE_SIZE,
-            Dispatchers.IO
-    )
-
-    @Singleton
-    @Provides
-    fun providesArtObjectRepository(
-            networkDataSource: NetworkDataSource
+    fun providesMuseumRepository(
+            museumNetworkDataSource: NetworkDataSource
     ): ArtObjectRepository = DefaultArtObjectRepository(
-            networkDataSource,
+            museumNetworkDataSource,
+            PAGE_SIZE,
             Dispatchers.IO
     )
 }

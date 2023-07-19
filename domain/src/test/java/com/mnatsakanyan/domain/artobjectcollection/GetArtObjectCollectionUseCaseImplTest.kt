@@ -1,21 +1,21 @@
 package com.mnatsakanyan.domain.artobjectcollection
 
 import androidx.paging.testing.asSnapshot
-import com.mnatsakanyan.data.repository.artobjectCollection.fake.TestArtObjectCollectionRepository
+import com.mnatsakanyan.data.repository.fake.TestArtObjectRepository
 import com.mnatsakanyan.domain.model.asExternalModel
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 import kotlin.test.assertTrue
 
-class GetArtObjectCollectionListUseCaseImplTest {
+class GetArtObjectCollectionUseCaseImplTest {
 
-    private val collectionRepository = TestArtObjectCollectionRepository()
+    private val collectionRepository = TestArtObjectRepository()
 
-    private val useCase = GetArtObjectCollectionListUseCaseImpl(collectionRepository)
+    private val useCase = GetArtObjectCollectionUseCaseImpl(collectionRepository)
 
     @Test
     fun invokeReturnMappedPagingDataArtObjects() = runTest {
-        val expectedResult = collectionRepository.getRequestedListOfItems(1).map { item ->
+        val expectedResult = collectionRepository.getRequestedCollection(1).map { item ->
             item.asExternalModel()
         }
 

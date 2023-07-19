@@ -5,7 +5,9 @@ data class RequestedArtObject(
         val imageUrl: String?,
         val objectNumber: String,
         val title: String,
-        val principalOrFirstMaker: String
+        val principalOrFirstMaker: String,
+        val description: String?,
+        val date: String?
 )
 
 internal fun NetworkArtObject.asExternalModel() = RequestedArtObject(
@@ -13,5 +15,7 @@ internal fun NetworkArtObject.asExternalModel() = RequestedArtObject(
         imageUrl = webImage?.url,
         objectNumber = objectNumber,
         title = title,
-        principalOrFirstMaker = principalOrFirstMaker
+        principalOrFirstMaker = principalOrFirstMaker,
+        description = description,
+        date = dating?.presentingDate
 )

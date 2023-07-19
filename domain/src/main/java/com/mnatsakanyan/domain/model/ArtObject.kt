@@ -7,7 +7,9 @@ data class ArtObject(
         val imageUrl: String?,
         val objectNumber: String,
         val title: String,
-        val author: String
+        val author: String,
+        val description: String?,
+        val date: String?
 )
 
 internal fun RequestedArtObject.asExternalModel() = ArtObject(
@@ -15,5 +17,7 @@ internal fun RequestedArtObject.asExternalModel() = ArtObject(
         imageUrl = imageUrl,
         objectNumber = objectNumber,
         title = title,
-        author = principalOrFirstMaker
+        author = principalOrFirstMaker,
+        description = description,
+        date = date
 )

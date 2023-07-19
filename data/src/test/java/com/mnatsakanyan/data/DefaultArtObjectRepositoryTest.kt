@@ -1,4 +1,4 @@
-package com.mnatsakanyan.data.artobjectcollection
+package com.mnatsakanyan.data
 
 import androidx.paging.PagingConfig
 import androidx.paging.PagingSource
@@ -7,14 +7,14 @@ import androidx.paging.testing.asSnapshot
 import com.mnatsakanyan.data.model.asExternalModel
 import com.mnatsakanyan.data.network.fake.TestFailedNetworkDataSource
 import com.mnatsakanyan.data.network.fake.TestNetworkDataSource
-import com.mnatsakanyan.data.repository.artobjectCollection.DefaultArtObjectCollectionRepository
+import com.mnatsakanyan.data.repository.DefaultArtObjectRepository
 import kotlinx.coroutines.Dispatchers.Unconfined
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
-class DefaultArtObjectCollectionRepositoryTest {
+class DefaultArtObjectRepositoryTest {
 
     private val pageSize = 5
 
@@ -22,26 +22,28 @@ class DefaultArtObjectCollectionRepositoryTest {
     private val networkDataSource = TestNetworkDataSource(100)
     private val failedNetworkDataSource = TestFailedNetworkDataSource()
 
-    private val pagingSource = DefaultArtObjectCollectionRepository(networkDataSource,
-                                                                    dispatcher = Unconfined)
-    private val failedPagingSource =
-            DefaultArtObjectCollectionRepository(failedNetworkDataSource,
-                                                 dispatcher = Unconfined)
+    private val repository = DefaultArtObjectRepository(networkDataSource = networkDataSource,
+                                                        pageSize = pageSize,
+                                                        dispatcher = Unconfined)
+    private val failedRepository =
+            DefaultArtObjectRepository(networkDataSource = failedNetworkDataSource,
+                                       pageSize = pageSize,
+                                       dispatcher = Unconfined)
 
     @Test
     fun pagerRefreshWhenSuccessfulReturnsPage() = runTest {
-        val pager = TestPager(pagingConfig, pagingSource)
-        val expectedListItems = failedNetworkDataSource.getCollectionList(1, pageSize)
+        val pager = TestPager(pagingConfig, repository)
+        val expectedItems = networkDataSource.getCollection(1, pageSize)
 
         val result = pager.refresh() as PagingSource.LoadResult.Page
 
-        assertTrue(result.data.containsAll(expectedListItems))
+        assertTrue(result.data.containsAll(expectedItems))
     }
 
     @Test
     fun pagerAppendWhenOnSuccessfulReturnsNextPage() = runTest {
-        val pager = TestPager(pagingConfig, pagingSource)
-        val expectedListItems = networkDataSource.getCollectionList(4, pageSize)
+        val pager = TestPager(pagingConfig, repository)
+        val expectedItems = networkDataSource.getCollection(4, pageSize)
 
         val result = with(pager) {
             refresh()
@@ -50,12 +52,12 @@ class DefaultArtObjectCollectionRepositoryTest {
             append()
         } as PagingSource.LoadResult.Page
 
-        assertTrue(result.data.containsAll(expectedListItems))
+        assertTrue(result.data.containsAll(expectedItems))
     }
 
     @Test
     fun pagerRefreshWhenOnNotSuccessfulReturnsError() = runTest {
-        val pager = TestPager(pagingConfig, failedPagingSource)
+        val pager = TestPager(pagingConfig, failedRepository)
 
         val result = pager.refresh()
         assertTrue(result is PagingSource.LoadResult.Error)
@@ -65,14 +67,14 @@ class DefaultArtObjectCollectionRepositoryTest {
     }
 
     @Test
-    fun fetchArtObjectCollectionListContainsFirstPageList() = runTest {
-        val expectedList =
-                networkDataSource.getCollectionList(1, pageSize).map { networkArtObject ->
+    fun fetchArtObjectCollectionContainsFirstPageItems() = runTest {
+        val expectedItems =
+                networkDataSource.getCollection(1, pageSize).map { networkArtObject ->
                     networkArtObject.asExternalModel()
                 }
 
-        val result = pagingSource.fetchArtObjectCollectionList().asSnapshot()
+        val result = repository.fetchArtObjectCollection().asSnapshot()
 
-        assertTrue(result.containsAll(expectedList))
+        assertTrue(result.containsAll(expectedItems))
     }
 }

@@ -9,7 +9,7 @@ import retrofit2.http.Query
 internal interface CollectionService {
 
     @GET("collection?s=artist")
-    suspend fun getCollectionList(
+    suspend fun getCollection(
             @Query("p")
             pageNumber: Int,
             @Query("ps")
