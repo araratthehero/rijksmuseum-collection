@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
-class GetArtObjectUseCaseImpl @Inject constructor(
+internal class GetArtObjectUseCaseImpl @Inject constructor(
         private val artObjectRepository: ArtObjectRepository
 ) : GetArtObjectUseCase {
 

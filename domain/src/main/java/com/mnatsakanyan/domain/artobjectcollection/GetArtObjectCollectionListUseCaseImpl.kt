@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
-class GetArtObjectCollectionListUseCaseImpl @Inject constructor(
+internal class GetArtObjectCollectionListUseCaseImpl @Inject constructor(
         private val museumArtObjectCollectionRepository: ArtObjectCollectionRepository
 ) : GetArtObjectCollectionListUseCase {
 
