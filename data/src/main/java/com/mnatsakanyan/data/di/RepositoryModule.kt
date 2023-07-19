@@ -14,7 +14,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object RepositoryModule {
+internal object RepositoryModule {
 
     private const val PAGE_SIZE = 15
 

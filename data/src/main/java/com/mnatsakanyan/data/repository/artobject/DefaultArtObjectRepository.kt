@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
-class DefaultArtObjectRepository @Inject constructor(
+internal class DefaultArtObjectRepository @Inject constructor(
         private val networkDataSource: NetworkDataSource,
         private val dispatcher: CoroutineDispatcher
 ) : ArtObjectRepository {

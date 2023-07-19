@@ -1,6 +1,6 @@
 package com.mnatsakanyan.data.model
 
-data class NetworkArtObject(
+internal data class NetworkArtObject(
         val id: String,
         val objectNumber: String,
         val title: String,

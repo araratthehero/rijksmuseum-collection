@@ -9,7 +9,7 @@ import com.mnatsakanyan.domain.model.ArtObject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-internal class TestGetArtObjectCollectionListUseCase(
+class TestGetArtObjectCollectionListUseCase(
         sizeOfList: Int = LIST_SIZE,
         private val breakBetweenAuthors: Int = BREAK_BETWEEN_AUTHORS
 ) : GetArtObjectCollectionListUseCase {

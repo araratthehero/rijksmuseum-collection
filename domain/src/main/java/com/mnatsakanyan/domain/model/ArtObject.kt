@@ -10,7 +10,7 @@ data class ArtObject(
         val author: String
 )
 
-fun RequestedArtObject.asExternalModel() = ArtObject(
+internal fun RequestedArtObject.asExternalModel() = ArtObject(
         id = id,
         imageUrl = imageUrl,
         objectNumber = objectNumber,

@@ -1,6 +1,6 @@
 package com.mnatsakanyan.data.model
 
-data class NetworkArtObjectCollectionResponse(
+internal data class NetworkArtObjectCollectionResponse(
         val artObjects: List<NetworkArtObject>
 )
 

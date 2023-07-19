@@ -19,19 +19,19 @@ class DefaultArtObjectCollectionRepositoryTest {
     private val pageSize = 5
 
     private val pagingConfig = PagingConfig(pageSize)
-    private val museumNetworkDataSource = TestNetworkDataSource(100)
-    private val failedMuseumNetworkDataSource = TestFailedNetworkDataSource()
+    private val networkDataSource = TestNetworkDataSource(100)
+    private val failedNetworkDataSource = TestFailedNetworkDataSource()
 
-    private val pagingSource = DefaultArtObjectCollectionRepository(museumNetworkDataSource,
+    private val pagingSource = DefaultArtObjectCollectionRepository(networkDataSource,
                                                                     dispatcher = Unconfined)
     private val failedPagingSource =
-            DefaultArtObjectCollectionRepository(failedMuseumNetworkDataSource,
+            DefaultArtObjectCollectionRepository(failedNetworkDataSource,
                                                  dispatcher = Unconfined)
 
     @Test
     fun pagerRefreshWhenSuccessfulReturnsPage() = runTest {
         val pager = TestPager(pagingConfig, pagingSource)
-        val expectedListItems = museumNetworkDataSource.getCollectionList(1, pageSize)
+        val expectedListItems = failedNetworkDataSource.getCollectionList(1, pageSize)
 
         val result = pager.refresh() as PagingSource.LoadResult.Page
 
@@ -41,7 +41,7 @@ class DefaultArtObjectCollectionRepositoryTest {
     @Test
     fun pagerAppendWhenOnSuccessfulReturnsNextPage() = runTest {
         val pager = TestPager(pagingConfig, pagingSource)
-        val expectedListItems = museumNetworkDataSource.getCollectionList(4, pageSize)
+        val expectedListItems = networkDataSource.getCollectionList(4, pageSize)
 
         val result = with(pager) {
             refresh()
@@ -67,7 +67,7 @@ class DefaultArtObjectCollectionRepositoryTest {
     @Test
     fun fetchArtObjectCollectionListContainsFirstPageList() = runTest {
         val expectedList =
-                museumNetworkDataSource.getCollectionList(1, pageSize).map { networkArtObject ->
+                networkDataSource.getCollectionList(1, pageSize).map { networkArtObject ->
                     networkArtObject.asExternalModel()
                 }
 

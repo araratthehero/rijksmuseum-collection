@@ -5,7 +5,7 @@ import com.mnatsakanyan.domain.model.ArtObject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
-internal class TestFailedGetArtObjectUseCase : GetArtObjectUseCase {
+class TestFailedGetArtObjectUseCase : GetArtObjectUseCase {
 
     override operator fun invoke(artObjectNumber: String): Flow<ArtObject> = flow {
         throw Exception()

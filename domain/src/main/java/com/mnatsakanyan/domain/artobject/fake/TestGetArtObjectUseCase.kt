@@ -7,7 +7,7 @@ import com.mnatsakanyan.domain.model.asExternalModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-internal class TestGetArtObjectUseCase : GetArtObjectUseCase {
+class TestGetArtObjectUseCase : GetArtObjectUseCase {
 
     private val testArtObjectRepository = TestArtObjectRepository()
 

@@ -1,7 +1,7 @@
 package com.mnatsakanyan.data.di
 
 import com.example.data.BuildConfig
-import com.mnatsakanyan.data.network.MuseumCollectionService
+import com.mnatsakanyan.data.network.CollectionService
 import com.mnatsakanyan.data.network.interceptor.ApiKeyInterceptor
 import dagger.Module
 import dagger.Provides
@@ -15,7 +15,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object NetworkModule {
+internal object NetworkModule {
 
     @Singleton
     @Provides
@@ -50,6 +50,6 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideCMuseumCollectionService(retrofit: Retrofit): MuseumCollectionService =
-            retrofit.create(MuseumCollectionService::class.java)
+    fun provideCollectionService(retrofit: Retrofit): CollectionService =
+            retrofit.create(CollectionService::class.java)
 }

@@ -9,10 +9,10 @@ import dagger.hilt.components.SingletonComponent
 
 @Module
 @InstallIn(SingletonComponent::class)
-interface DataStoreModule {
+internal interface DataStoreModule {
 
     @Binds
-    fun bindMuseumNetworkDataSource(
-            remoteMuseumNetworkDataSource: RemoteNetworkDataSource
+    fun bindNetworkDataSource(
+            remoteNetworkDataSource: RemoteNetworkDataSource
     ): NetworkDataSource
 }

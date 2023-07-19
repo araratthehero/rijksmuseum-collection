@@ -2,21 +2,18 @@ package com.mnatsakanyan.data.repository.artobjectCollection
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
-import androidx.paging.PagingData
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import androidx.paging.map
 import com.mnatsakanyan.data.model.NetworkArtObject
-import com.mnatsakanyan.data.model.RequestedArtObject
 import com.mnatsakanyan.data.model.asExternalModel
 import com.mnatsakanyan.data.network.NetworkDataSource
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-class DefaultArtObjectCollectionRepository @Inject constructor(
+internal class DefaultArtObjectCollectionRepository @Inject constructor(
         private val networkDataSource: NetworkDataSource,
         private val pageSize: Int = PAGE_SIZE,
         private val dispatcher: CoroutineDispatcher
@@ -32,7 +29,7 @@ class DefaultArtObjectCollectionRepository @Inject constructor(
         try {
             val page = params.key ?: 1
             val response = networkDataSource.getCollectionList(pageNumber = page,
-                                                                     itemCountPerPage = params.loadSize)
+                                                               itemCountPerPage = params.loadSize)
 
             LoadResult.Page(
                     data = response,

@@ -10,11 +10,11 @@ import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 internal class GetArtObjectCollectionListUseCaseImpl @Inject constructor(
-        private val museumArtObjectCollectionRepository: ArtObjectCollectionRepository
+        private val artObjectCollectionRepository: ArtObjectCollectionRepository
 ) : GetArtObjectCollectionListUseCase {
 
     override operator fun invoke(): Flow<PagingData<ArtObject>> =
-            museumArtObjectCollectionRepository.fetchArtObjectCollectionList()
+            artObjectCollectionRepository.fetchArtObjectCollectionList()
                     .map { requestedArtObjects ->
                         requestedArtObjects.map { requestedArtObject ->
                             requestedArtObject.asExternalModel()

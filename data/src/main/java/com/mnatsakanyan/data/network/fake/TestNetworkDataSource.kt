@@ -4,7 +4,7 @@ import com.mnatsakanyan.data.model.NetworkArtObject
 import com.mnatsakanyan.data.model.NetworkImage
 import com.mnatsakanyan.data.network.NetworkDataSource
 
-class TestNetworkDataSource(
+internal class TestNetworkDataSource(
         sizeOfList: Int = 0
 ) : NetworkDataSource {
 

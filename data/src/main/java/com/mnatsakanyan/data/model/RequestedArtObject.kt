@@ -8,7 +8,7 @@ data class RequestedArtObject(
         val principalOrFirstMaker: String
 )
 
-fun NetworkArtObject.asExternalModel() = RequestedArtObject(
+internal fun NetworkArtObject.asExternalModel() = RequestedArtObject(
         id = id,
         imageUrl = webImage?.url,
         objectNumber = objectNumber,

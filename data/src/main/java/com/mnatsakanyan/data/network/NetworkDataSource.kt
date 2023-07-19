@@ -2,7 +2,7 @@ package com.mnatsakanyan.data.network
 
 import com.mnatsakanyan.data.model.NetworkArtObject
 
-interface NetworkDataSource {
+internal interface NetworkDataSource {
 
     suspend fun getCollectionList(pageNumber: Int, itemCountPerPage: Int): List<NetworkArtObject>
 
