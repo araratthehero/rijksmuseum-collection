@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">Rijksmuseum collection</string>
+
+    <string name="app_title">Rijksmuseum</string>
+
+    <string name="loading_text">Loading..</string>
+
+    <string name="artwork_collection_loading_failed_text">We can not load any artworks at the moment\nPlease check your internet connection</string>
+    <string name="artwork_collection_loading_more_items_text">Loading more artworks</string>
+    <string name="artwork_collection_loading_more_failed_text">Could not load more artworks</string>
+
+    <string name="artwork_details_loading_failed_text">Could not load artwork details</string>
+    <string name="artwork_details_title">Artwork details</string>
+    <string name="artwork_details_author_header">Author</string>
+    <string name="artwork_details_description_header">Description</string>
+    <string name="artwork_details_date_header">Date</string>
+
+    <!-- For testing -->
+    <string name="artwork_collection_card" translatable="false">artwork_collection_card</string>
+    <string name="artwork_details_back_button" translatable="false">artwork_details_back_button</string>
 </resources>
