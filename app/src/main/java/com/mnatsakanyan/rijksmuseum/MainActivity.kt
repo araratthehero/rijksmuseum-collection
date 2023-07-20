@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.core.view.WindowCompat.setDecorFitsSystemWindows
 import com.mnatsakanyan.rijksmuseum.compose.theme.RijksmuseumTheme
+import com.mnatsakanyan.rijksmuseum.navigation.RijksmuseumNavHost
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -17,7 +18,7 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             RijksmuseumTheme {
-                // TODO: Add nav host
+                RijksmuseumNavHost()
             }
         }
     }
