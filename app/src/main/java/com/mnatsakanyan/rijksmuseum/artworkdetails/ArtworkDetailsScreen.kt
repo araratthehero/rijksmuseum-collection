@@ -1,5 +1,7 @@
 package com.mnatsakanyan.rijksmuseum.artworkdetails
 
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -22,7 +24,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
@@ -31,7 +35,8 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import coil.compose.AsyncImage
+import coil.compose.AsyncImagePainter
+import coil.compose.rememberAsyncImagePainter
 import com.mnatsakanyan.domain.model.ArtObject
 import com.mnatsakanyan.rijksmuseum.R
 import com.mnatsakanyan.rijksmuseum.artworkdetails.ArtworkDetailsUiState.Error
@@ -40,8 +45,10 @@ import com.mnatsakanyan.rijksmuseum.compose.common.ErrorScreen
 import com.mnatsakanyan.rijksmuseum.compose.common.LoadingScreen
 import com.mnatsakanyan.rijksmuseum.compose.common.MuseumTopBar
 import com.mnatsakanyan.rijksmuseum.compose.theme.Dimen.cardCornerRadius
+import com.mnatsakanyan.rijksmuseum.compose.theme.Dimen.detailsImageHeight
 import com.mnatsakanyan.rijksmuseum.compose.theme.Dimen.paddingLarge
 import com.mnatsakanyan.rijksmuseum.compose.theme.Dimen.paddingMedium
+import kotlin.math.min
 
 @Composable
 internal fun ArtworkDetailsScreen(
@@ -131,6 +138,9 @@ private fun ArtworkDetailsArtworksScreen(
     ) {
         artObject.imageUrl?.let { imageUrl ->
             ArtworkDetailsHeaderImage(
+                    modifier = Modifier
+                            .fillMaxWidth()
+                            .height(detailsImageHeight),
                     imageUrl = imageUrl
             )
         }
@@ -151,15 +161,22 @@ private fun ArtworkDetailsHeaderImage(
         modifier: Modifier = Modifier,
         imageUrl: String
 ) {
-    AsyncImage(
+    val painter = rememberAsyncImagePainter(imageUrl)
+    val state = painter.state
+
+    val transition by animateFloatAsState(
+            targetValue = if (state is AsyncImagePainter.State.Success) 1f else 0f
+    )
+    Image(
             modifier = modifier
-                    .fillMaxWidth()
+                    .scale(.8f + (.2f * transition))
+                    .alpha(min(1f, transition / .2f))
                     .clip(RoundedCornerShape(
                             corner = CornerSize(cardCornerRadius)
                     )),
-            model = imageUrl,
+            painter = painter,
             contentDescription = null,
-            contentScale = ContentScale.Crop,
+            contentScale = ContentScale.Crop
     )
 }
 

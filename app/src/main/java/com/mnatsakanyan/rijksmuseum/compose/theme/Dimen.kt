@@ -10,4 +10,5 @@ internal object Dimen {
     val cardCornerRadius = 16.dp
 
     val thumbnailSize = 84.dp
+    val detailsImageHeight = 300.dp
 }
