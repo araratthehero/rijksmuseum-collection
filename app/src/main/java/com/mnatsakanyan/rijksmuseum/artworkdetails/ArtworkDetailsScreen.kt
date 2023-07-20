@@ -39,6 +39,7 @@ import coil.compose.AsyncImagePainter
 import coil.compose.rememberAsyncImagePainter
 import com.mnatsakanyan.domain.model.ArtObject
 import com.mnatsakanyan.rijksmuseum.R
+import com.mnatsakanyan.rijksmuseum.artworkdetails.ArtworkDetailsUiState.Artwork
 import com.mnatsakanyan.rijksmuseum.artworkdetails.ArtworkDetailsUiState.Error
 import com.mnatsakanyan.rijksmuseum.artworkdetails.ArtworkDetailsUiState.Loading
 import com.mnatsakanyan.rijksmuseum.compose.common.ErrorScreen
@@ -117,7 +118,7 @@ private fun ArtworkDetailsScreenContent(
                 onRetryButtonClick = onRetryButtonClick
         )
 
-        is ArtworkDetailsUiState.Artwork -> ArtworkDetailsArtworksScreen(
+        is Artwork -> ArtworkDetailsArtworksScreen(
                 modifier = modifier,
                 artObject = uiState.artObject,
         )
@@ -163,10 +164,10 @@ private fun ArtworkDetailsHeaderImage(
 ) {
     val painter = rememberAsyncImagePainter(imageUrl)
     val state = painter.state
-
     val transition by animateFloatAsState(
             targetValue = if (state is AsyncImagePainter.State.Success) 1f else 0f
     )
+
     Image(
             modifier = modifier
                     .scale(.8f + (.2f * transition))

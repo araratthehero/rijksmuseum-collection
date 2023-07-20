@@ -106,8 +106,7 @@ private fun ArtworkCollectionScreenContent(
                 is ArtworkCollectionListItem.ArtworkCollectionAuthor -> AuthorListItem(
                         author = listItem
                 )
-                else -> { /* No need to draw anything */
-                }
+                else -> { /* No need to draw anything */ }
             }
         }
 
@@ -116,8 +115,7 @@ private fun ArtworkCollectionScreenContent(
             is LoadState.Error -> item {
                 ArtworkListItemInitialError(onRetryButtonClick = onRetryButtonClick)
             }
-            else -> { /* Could be implemented based on design requirements */
-            }
+            else -> { /* Could be implemented based on design requirements */ }
         }
 
         when (artObjects.loadState.append) {
@@ -125,8 +123,7 @@ private fun ArtworkCollectionScreenContent(
             is LoadState.Error -> item {
                 ArtworkListItemAppendError(onRetryButtonClick = onRetryButtonClick)
             }
-            else -> { /* Could be implemented based on design requirements */
-            }
+            else -> { /* Could be implemented based on design requirements */ }
         }
     }
 }

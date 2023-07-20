@@ -55,7 +55,6 @@ class NavigationTest {
         }
     }
 
-    private fun AndroidComposeTestRule<*, *>.getString(@StringRes
-                                                       id: Int) =
+    private fun AndroidComposeTestRule<*, *>.getString(@StringRes id: Int) =
             activity.resources.getString(id)
 }

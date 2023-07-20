@@ -28,11 +28,13 @@ internal fun RijksmuseumTheme(
 
     val systemUiColor = rememberSystemUiController()
     SideEffect {
-        systemUiColor.setStatusBarColor(colorScheme.background)
-        systemUiColor.setNavigationBarColor(
-                color = colorScheme.background,
-                navigationBarContrastEnforced = false
-        )
+        with(systemUiColor) {
+            setStatusBarColor(colorScheme.background)
+            setNavigationBarColor(
+                    color = colorScheme.background,
+                    navigationBarContrastEnforced = false
+            )
+        }
     }
 
     CompositionLocalProvider {
