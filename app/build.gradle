@@ -13,7 +13,7 @@ android {
         versionCode 1
         versionName "1.0.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.mnatsakanyan.rijksmuseum.RijksmuseumTestRunner"
     }
 
     buildTypes {
@@ -55,6 +55,24 @@ dependencies {
     implementation libs.compose.ui.tooling
     implementation libs.compose.accompanist.systemuicontroller
 
+    implementation libs.ui.coil
+    implementation libs.ui.coil.compose
+
     implementation libs.di.hilt
     kapt libs.di.compiler
+
+    debugImplementation libs.test.compose.manifest
+
+    testImplementation libs.test.junit
+    testImplementation libs.test.kotlin
+    testImplementation libs.test.coroutines
+    testImplementation libs.test.paging
+    testImplementation libs.test.paging.common
+
+    androidTestImplementation platform(libs.compose.bom)
+    androidTestImplementation libs.x.test.runner
+    androidTestImplementation libs.x.hilt.navigation.compose
+    androidTestImplementation libs.test.junit.compose
+    androidTestImplementation libs.test.hilt
+    kaptAndroidTest libs.test.hilt.compiler
 }

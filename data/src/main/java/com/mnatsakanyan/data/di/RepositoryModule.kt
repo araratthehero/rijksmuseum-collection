@@ -18,10 +18,10 @@ internal object RepositoryModule {
 
     @Singleton
     @Provides
-    fun providesMuseumRepository(
-            museumNetworkDataSource: NetworkDataSource
+    fun providesArtObjectRepository(
+            networkDataSource: NetworkDataSource
     ): ArtObjectRepository = DefaultArtObjectRepository(
-            museumNetworkDataSource,
+            networkDataSource,
             PAGE_SIZE,
             Dispatchers.IO
     )
