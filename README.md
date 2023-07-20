@@ -1,8 +1,6 @@
 Rijksmuseum collection
 ========
-The app is created as an assignment for Albert Heijn.
-
-You can use it to browse through Rijksmuseum artworks and get more details about each item.
+The app is created to show Rijksmuseum's artworks list and show more details about the artworks when clicking on them. It uses the [RijksData API](https://data.rijksmuseum.nl/object-metadata/api/). 
 
 https://github.com/araratthehero/rijksmuseum-collection/assets/8832594/f371eb8d-5705-4661-9f37-7ebb689fde2a
 
