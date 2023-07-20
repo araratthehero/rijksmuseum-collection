@@ -11,15 +11,16 @@ import dagger.hilt.components.SingletonComponent
 
 @Module
 @InstallIn(SingletonComponent::class)
-internal interface UseCaseModule {
+abstract class UseCaseModule {
 
     @Binds
-    fun bindGetArtObjectCollectionUseCase(
+    internal abstract fun bindGetArtObjectCollectionUseCase(
             getArtObjectCollectionUseCaseImpl: GetArtObjectCollectionUseCaseImpl
     ): GetArtObjectCollectionUseCase
 
     @Binds
-    fun bindGetArtObjectUseCase(
+    internal abstract fun bindGetArtObjectUseCase(
             getArtObjectUseCaseImpl: GetArtObjectUseCaseImpl
     ): GetArtObjectUseCase
 }
+
