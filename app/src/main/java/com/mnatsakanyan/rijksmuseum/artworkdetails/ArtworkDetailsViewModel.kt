@@ -12,7 +12,6 @@ import com.mnatsakanyan.domain.model.Result.Success
 import com.mnatsakanyan.rijksmuseum.artworkdetails.navigation.ARTWORK_OBJECT_NUMBER
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.channels.BufferOverflow.DROP_OLDEST
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharingStarted.Companion.Lazily
@@ -30,11 +29,7 @@ internal class ArtworkDetailsViewModel @Inject constructor(
 
     private val artworkObjectNumber: String = checkNotNull(savedStateHandle[ARTWORK_OBJECT_NUMBER])
 
-    private val _triggerGetArtObjectUseCase = MutableSharedFlow<Unit>(
-            replay = 1,
-            extraBufferCapacity = 0,
-            onBufferOverflow = DROP_OLDEST
-    )
+    private val _triggerGetArtObjectUseCase = MutableSharedFlow<Unit>(replay = 1)
 
     @OptIn(ExperimentalCoroutinesApi::class)
     val uiState: StateFlow<ArtworkDetailsUiState> = _triggerGetArtObjectUseCase
